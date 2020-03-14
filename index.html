@@ -5,62 +5,79 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
     <title>Work Day Scheduler</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"
+        integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
     <header class="jumbotron">
         <h1 class="display-3">Work Day Scheduler</h1>
         <p class="lead">A simple calendar app for scheduling your work day</p>
-        <h2></h2>
-        <p id="currentDay" class="lead"></p>
+        <h2 id="currentDay" class="lead"></h2>
     </header>
     <div class="container">
         <!-- Timeblocks go here -->
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+
+
+            <a href="#" class="list-group-item list-group-item-action list-group-item-primary">A simple primary list
+                group item</a>
+            <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">A simple secondary list
+                group item</a>
+            <a href="#" class="list-group-item list-group-item-action list-group-item-success">A simple success list
+                group item</a>
+            <a href="#" class="list-group-item list-group-item-action list-group-item-danger">A simple danger list group
+                item</a>
+            <a href="#" class="list-group-item list-group-item-action list-group-item-warning">A simple warning list
+                group item</a>
+            <a href="#" class="list-group-item list-group-item-action list-group-item-info">A simple info list group
+                item</a>
+            <a href="#" class="list-group-item list-group-item-action list-group-item-light">A simple light list group
+                item</a>
+            <a href="#" class="list-group-item list-group-item-action list-group-item-dark">A simple dark list group
+                item</a>
+            <a href="#" class="list-group-item list-group-item-action list-group-item-info">A simple info list group
+                item</a>
+            <a href="#" class="list-group-item list-group-item-action list-group-item-light">A simple light list group
+                item</a>
+            <a href="#" class="list-group-item list-group-item-action list-group-item-dark">A simple dark list group
+                item</a>
+        </div>
     </div>
+
     <script>
-    // <!-- GIVEN I am using a daily planner to create a schedule
-    // WHEN I open the planner
-    // THEN the current day is displayed at the top of the calendar
-    // I googled how to get a current date without an API and this seemed to work well. A lot of code and dirty looking though.
-    var objToday = new Date(),
-	weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-	dayOfWeek = weekday[objToday.getDay()],
-	domEnder = function() { var a = objToday; if (/1/.test(parseInt((a + "").charAt(0)))) return "th"; a = parseInt((a + "").charAt(1)); return 1 == a ? "st" : 2 == a ? "nd" : 3 == a ? "rd" : "th" }(),
-	dayOfMonth = today + ( objToday.getDate() < 10) ? "0" + objToday.getDate() + domEnder : objToday.getDate() + domEnder,
-	months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-	curMonth = months[objToday.getMonth()],
-	curYear = objToday.getFullYear(),
-	curHour = objToday.getHours() > 12 ? objToday.getHours() - 12 : (objToday.getHours() < 10 ? "0" + objToday.getHours() : objToday.getHours()),
-	curMinute = objToday.getMinutes() < 10 ? "0" + objToday.getMinutes() : objToday.getMinutes(),
-	curSeconds = objToday.getSeconds() < 10 ? "0" + objToday.getSeconds() : objToday.getSeconds(),
-	curMeridiem = objToday.getHours() > 12 ? "PM" : "AM";
-    var today = dayOfWeek + " " + curMonth + " " + dayOfMonth + ", " + curYear;
-    console.log(today);
-    document.getElementsByTagName("h2")[0].textContent = today;
-    // WHEN I scroll down
-    // THEN I am presented with timeblocks for standard business hours
+        // <!-- GIVEN I am using a daily planner to create a schedule
+        // WHEN I open the planner
+        // THEN the current day is displayed at the top of the calendar
+        $("#currentDay").text(moment().format('MMMM Do YYYY, h:mm a'));
+        console.log(moment())
 
-    // WHEN I view the timeblocks for that day
-    // THEN each timeblock is color coded to indicate whether it is in the past, present, or future
+        // WHEN I scroll down
+        // THEN I am presented with timeblocks for standard business hours
 
-    // WHEN I click into a timeblock
-    // THEN I can enter an event
+        // WHEN I view the timeblocks for that day
+        // THEN each timeblock is color coded to indicate whether it is in the past, present, or future
 
-    // WHEN I click the save button for that timeblock
-    // THEN the text for that event is saved in local storage
+        // WHEN I click into a timeblock
+        // THEN I can enter an event
 
-    // WHEN I refresh the page
-    // THEN the saved events persist -->
-    
+        // WHEN I click the save button for that timeblock
+        // THEN the text for that event is saved in local storage
+
+        // WHEN I refresh the page
+        // THEN the saved events persist -->
+
     </script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 </body>
 
 </html>
