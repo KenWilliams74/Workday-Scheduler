@@ -20,61 +20,75 @@
 <body>
     <header class="jumbotron">
         <h1 class="display-3">Work Day Scheduler</h1>
-        <p class="lead">A simple calendar app for scheduling your work day</p>
+        <h4 class="lead">A simple calendar app for scheduling your work day</h4>
         <h2 id="currentDay" class="lead"></h2>
     </header>
+
     <div class="container">
         <!-- Timeblocks go here -->
         <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+            <p>
+                <a href="#" id= "7" class="timestamp list-group-item list-group-item-action list-group-item-light">7:00am</a>
+                <a href="#" id= "7" class="timestamp list-group-item list-group-item-action list-group-item-light">8:00am</a>
+                <a href="#" id= "7" class="timestamp list-group-item list-group-item-action list-group-item-light">9:00am</a>
+                <a href="#" id= "7" class="timestamp list-group-item list-group-item-action list-group-item-light">10:00am</a>
+                <a href="#" id= "7" class="timestamp list-group-item list-group-item-action list-group-item-light">11:00am</a>
+                <a href="#" id= "7" class="timestamp list-group-item list-group-item-action list-group-item-light">12:00pm</a>
+                <a href="#" id= "7"class="timestamp list-group-item list-group-item-action list-group-item-light">1:00pm</a>
+                <a href="#" id= "7" class="timestamp list-group-item list-group-item-action list-group-item-light">2:00pm</a>
+                <a href="#" id= "7" class="timestamp list-group-item list-group-item-action list-group-item-light">3:00pm</a>
+                <a href="#" class="timestamp list-group-item list-group-item-action list-group-item-light">4:00pm</a>
+                <a href="#" class="timestamp list-group-item list-group-item-action list-group-item-light">5:00pm</a>
+                <a href="#" class="timestamp list-group-item list-group-item-action list-group-item-light">6:00pm</a>
+                <a href="#" class="timestamp list-group-item list-group-item-action list-group-item-light">7:00pm</a>
 
 
-            <a href="#" class="list-group-item list-group-item-action list-group-item-primary">A simple primary list
-                group item</a>
-            <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">A simple secondary list
-                group item</a>
-            <a href="#" class="list-group-item list-group-item-action list-group-item-success">A simple success list
-                group item</a>
-            <a href="#" class="list-group-item list-group-item-action list-group-item-danger">A simple danger list group
-                item</a>
-            <a href="#" class="list-group-item list-group-item-action list-group-item-warning">A simple warning list
-                group item</a>
-            <a href="#" class="list-group-item list-group-item-action list-group-item-info">A simple info list group
-                item</a>
-            <a href="#" class="list-group-item list-group-item-action list-group-item-light">A simple light list group
-                item</a>
-            <a href="#" class="list-group-item list-group-item-action list-group-item-dark">A simple dark list group
-                item</a>
-            <a href="#" class="list-group-item list-group-item-action list-group-item-info">A simple info list group
-                item</a>
-            <a href="#" class="list-group-item list-group-item-action list-group-item-light">A simple light list group
-                item</a>
-            <a href="#" class="list-group-item list-group-item-action list-group-item-dark">A simple dark list group
-                item</a>
+            </p>
         </div>
     </div>
 
-    <script>
-        // <!-- GIVEN I am using a daily planner to create a schedule
-        // WHEN I open the planner
-        // THEN the current day is displayed at the top of the calendar
-        $("#currentDay").text(moment().format('MMMM Do YYYY, h:mm a'));
-        console.log(moment())
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // <!-- GIVEN I am using a daily planner to create a schedule
+            // WHEN I open the planner
+            // THEN the current day is displayed at the top of the calendar
+            $("#currentDay").text(moment().format('MMMM Do YYYY, h:mm a'));
+            var currentTime = parseInt(moment().format("h:mm"));
+            console.log(currentTime);
+            
 
-        // WHEN I scroll down
-        // THEN I am presented with timeblocks for standard business hours
+            // WHEN I scroll down
+            // THEN I am presented with timeblocks for standard business hours
+            // WHEN I view the timeblocks for that day
+            // THEN each timeblock is color coded to indicate whether it is in the past, present, or future
+            var myElements = $(".timestamp");
+            var plannerTime = parseInt(myElements[0].text)
+            console.log(plannerTime);
+            
 
-        // WHEN I view the timeblocks for that day
-        // THEN each timeblock is color coded to indicate whether it is in the past, present, or future
+            $(".timestamp").on("click", function () {
+                var i = myElements[0].innerHtml
+                console.log(myElements[0].innerHTML)
+            
+            });
+            
 
-        // WHEN I click into a timeblock
-        // THEN I can enter an event
 
-        // WHEN I click the save button for that timeblock
-        // THEN the text for that event is saved in local storage
 
-        // WHEN I refresh the page
-        // THEN the saved events persist -->
+            // WHEN I click into a timeblock
+            // THEN I can enter an event
+           
+            
+            // WHEN I click the save button for that timeblock
+            // THEN the text for that event is saved in local storage
+
+            // WHEN I refresh the page
+            // THEN the saved events persist -->
+
+
+
+        });
+
 
     </script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
