@@ -28,19 +28,32 @@
         <!-- Timeblocks go here -->
         <div class="list-group">
             <p>
-                <a href="#" id= "7" class="timestamp list-group-item list-group-item-action list-group-item-light">7:00am</a>
-                <a href="#" id= "7" class="timestamp list-group-item list-group-item-action list-group-item-light">8:00am</a>
-                <a href="#" id= "7" class="timestamp list-group-item list-group-item-action list-group-item-light">9:00am</a>
-                <a href="#" id= "7" class="timestamp list-group-item list-group-item-action list-group-item-light">10:00am</a>
-                <a href="#" id= "7" class="timestamp list-group-item list-group-item-action list-group-item-light">11:00am</a>
-                <a href="#" id= "7" class="timestamp list-group-item list-group-item-action list-group-item-light">12:00pm</a>
-                <a href="#" id= "7"class="timestamp list-group-item list-group-item-action list-group-item-light">1:00pm</a>
-                <a href="#" id= "7" class="timestamp list-group-item list-group-item-action list-group-item-light">2:00pm</a>
-                <a href="#" id= "7" class="timestamp list-group-item list-group-item-action list-group-item-light">3:00pm</a>
-                <a href="#" class="timestamp list-group-item list-group-item-action list-group-item-light">4:00pm</a>
-                <a href="#" class="timestamp list-group-item list-group-item-action list-group-item-light">5:00pm</a>
-                <a href="#" class="timestamp list-group-item list-group-item-action list-group-item-light">6:00pm</a>
-                <a href="#" class="timestamp list-group-item list-group-item-action list-group-item-light">7:00pm</a>
+                <a href="#" id="7"
+                    class="timestamp list-group-item list-group-item-action list-group-item-light">7:00am</a>
+                <a href="#" id="8"
+                    class="timestamp list-group-item list-group-item-action list-group-item-light">8:00am</a>
+                <a href="#" id="9"
+                    class="timestamp list-group-item list-group-item-action list-group-item-light">9:00am</a>
+                <a href="#" id="10"
+                    class="timestamp list-group-item list-group-item-action list-group-item-light">10:00am</a>
+                <a href="#" id="11"
+                    class="timestamp list-group-item list-group-item-action list-group-item-light">11:00am</a>
+                <a href="#" id="12"
+                    class="timestamp list-group-item list-group-item-action list-group-item-light">12:00pm</a>
+                <a href="#" id="13"
+                    class="timestamp list-group-item list-group-item-action list-group-item-light">1:00pm</a>
+                <a href="#" id="14"
+                    class="timestamp list-group-item list-group-item-action list-group-item-light">2:00pm</a>
+                <a href="#" id="15"
+                    class="timestamp list-group-item list-group-item-action list-group-item-light">3:00pm</a>
+                <a href="#" id="16"
+                    class="timestamp list-group-item list-group-item-action list-group-item-light">4:00pm</a>
+                <a href="#" id="17"
+                    class="timestamp list-group-item list-group-item-action list-group-item-light">5:00pm</a>
+                <a href="#" id="18"
+                    class="timestamp list-group-item list-group-item-action list-group-item-light">6:00pm</a>
+                <a href="#" id="19"
+                    class="timestamp list-group-item list-group-item-action list-group-item-light">7:00pm</a>
 
 
             </p>
@@ -53,32 +66,48 @@
             // WHEN I open the planner
             // THEN the current day is displayed at the top of the calendar
             $("#currentDay").text(moment().format('MMMM Do YYYY, h:mm a'));
-            var currentTime = parseInt(moment().format("h:mm"));
+            var currentTime = parseInt(moment().format("H:mm"));
             console.log(currentTime);
-            
+
+            var myElements = $(".timestamp");
 
             // WHEN I scroll down
             // THEN I am presented with timeblocks for standard business hours
             // WHEN I view the timeblocks for that day
             // THEN each timeblock is color coded to indicate whether it is in the past, present, or future
-            var myElements = $(".timestamp");
-            var plannerTime = parseInt(myElements[0].text)
-            console.log(plannerTime);
-            
+            for (i = 0; i < myElements.length; i++) {
 
-            $(".timestamp").on("click", function () {
-                var i = myElements[0].innerHtml
-                console.log(myElements[0].innerHTML)
-            
+                var plannerTime = parseInt(myElements[i].id);
+
+                function colorChange() {
+                    var color = myElements[i];
+
+                    if (plannerTime === currentTime) {
+                        $(color).removeClass("list-group-item-light", "list-group-item-dark", "list-group-item-success");
+                        $(color).addClass("list-group-item-success");
+                    } else if (plannerTime < currentTime) {
+                        $(color).removeClass("list-group-item-light", "list-group-item-dark", "list-group-item-success");
+                        $(color).addClass("list-group-item-dark");
+                        console.log(myElements[i]);
+                    } return;
+                }
+                colorChange();
+            }
+
+        
+
+            $("a").click(function (event) {
+                plannerTime = parseInt(event.target.id);
+
+                console.log(plannerTime);
             });
-            
 
 
 
             // WHEN I click into a timeblock
             // THEN I can enter an event
-           
-            
+
+
             // WHEN I click the save button for that timeblock
             // THEN the text for that event is saved in local storage
 
